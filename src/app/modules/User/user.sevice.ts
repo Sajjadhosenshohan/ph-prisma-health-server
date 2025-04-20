@@ -7,7 +7,7 @@ import prisma from "../../../shared/prisma";
 
 const createAdmin = async (data: any) => {
     const hashedPassword: string = await bcrypt.hash(data.password, 12)
-
+    
     const userData = {
         email: data.admin.email,
         password: hashedPassword,
