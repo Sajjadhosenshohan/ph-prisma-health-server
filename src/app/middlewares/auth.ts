@@ -7,7 +7,7 @@ import ApiError from "../error/ApiError";
 import httpStatus from "http-status";
 
 const auth = (...roles: string[]) => {
-  return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+  return catchAsync(async (req: Request & {user?:any}, res: Response, next: NextFunction) => {
     const token = req.headers.authorization;
 
     if (!token) {
@@ -18,6 +18,8 @@ const auth = (...roles: string[]) => {
       token,
       config.jwt.jwt_secret as Secret
     );
+
+    req.user = verifyTokenData;
 
     const checkRole = roles.some((role) => role === verifyTokenData.role);
     if (!checkRole) {
