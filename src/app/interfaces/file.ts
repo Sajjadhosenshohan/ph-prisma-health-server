@@ -22,7 +22,24 @@ export interface ICloudinaryUpload {
   api_key: string;
 }
 
-export interface IFile {
-  path: string;
-  originalname: string;
+export type IFile = {
+  fieldname: string
+  originalname: string
+  encoding: string
+  mimetype: string
+  destination: string
+  filename: string
+  path: string
+  size: number
+}
+
+export type IUser = {
+  id: string
+  name: string
+  email: string
+  password: string
+  role: string
+  profilePhoto?: string
+  createdAt: Date
+  updatedAt: Date
 }
